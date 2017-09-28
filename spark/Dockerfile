@@ -36,7 +36,7 @@ ENV PATH $PATH:$SPARK_HOME/bin
 
 RUN mkdir usr/local/apps
 
-ADD spark-kafka-streaming-integration-1.0.1.jar /usr/local/apps
+ADD spark-kafka-streaming-integration-1.0.0.jar /usr/local/apps
 
 # COPY ha.conf $SPARK_HOME/conf
 
