@@ -8,8 +8,6 @@ RUN mkdir usr/local/configs
 
 ADD basicConfig.json /usr/local/configs
 
-RUN chown -R nifi:nifi $NIFI_HOME
-
 ADD nifi-simulator-bundle-nar-1.0-SNAPSHOT.nar ${NIFI_HOME}/lib
 
 # Startup NiFi
