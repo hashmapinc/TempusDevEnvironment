@@ -23,6 +23,7 @@ services:
       - "8080:8080"
       - "1883:1883"
       - "5683:5683/udp"
+      - "9999:9999"
     env_file:
       - tb.env
     environment:
