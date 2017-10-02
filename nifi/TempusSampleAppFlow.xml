@@ -1,0 +1,615 @@
+<?xml version="1.0" ?>
+<template encoding-version="1.1">
+  <description></description>
+  <groupId>dee79dba-015e-1000-1c06-bf99f3e6fa15</groupId>
+  <name>TempusSampleAppFlow</name>
+  <snippet>
+    <connections>
+      <id>b8138867-2740-3919-0000-000000000000</id>
+      <parentGroupId>e0254ddb-a7a3-3279-0000-000000000000</parentGroupId>
+      <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+      <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+      <destination>
+        <groupId>e0254ddb-a7a3-3279-0000-000000000000</groupId>
+        <id>101d5c05-b84f-3df4-0000-000000000000</id>
+        <type>PROCESSOR</type>
+      </destination>
+      <flowFileExpiration>0 sec</flowFileExpiration>
+      <labelIndex>1</labelIndex>
+      <name></name>
+      <selectedRelationships>Success</selectedRelationships>
+      <source>
+        <groupId>e0254ddb-a7a3-3279-0000-000000000000</groupId>
+        <id>7e65a18e-fb94-38b5-0000-000000000000</id>
+        <type>PROCESSOR</type>
+      </source>
+      <zIndex>0</zIndex>
+    </connections>
+    <connections>
+      <id>e391835a-07db-3f68-0000-000000000000</id>
+      <parentGroupId>e0254ddb-a7a3-3279-0000-000000000000</parentGroupId>
+      <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+      <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+      <destination>
+        <groupId>e0254ddb-a7a3-3279-0000-000000000000</groupId>
+        <id>b38ad5d0-85de-3e27-0000-000000000000</id>
+        <type>PROCESSOR</type>
+      </destination>
+      <flowFileExpiration>0 sec</flowFileExpiration>
+      <labelIndex>1</labelIndex>
+      <name></name>
+      <selectedRelationships>success</selectedRelationships>
+      <source>
+        <groupId>e0254ddb-a7a3-3279-0000-000000000000</groupId>
+        <id>0c9f40e0-9964-3557-0000-000000000000</id>
+        <type>PROCESSOR</type>
+      </source>
+      <zIndex>0</zIndex>
+    </connections>
+    <processors>
+      <id>b38ad5d0-85de-3e27-0000-000000000000</id>
+      <parentGroupId>e0254ddb-a7a3-3279-0000-000000000000</parentGroupId>
+      <position>
+        <x>445.0</x>
+        <y>290.0</y>
+      </position>
+      <bundle>
+        <artifact>nifi-mqtt-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.3.0</version>
+      </bundle>
+      <config>
+        <bulletinLevel>WARN</bulletinLevel>
+        <comments></comments>
+        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+        <descriptors>
+          <entry>
+            <key>Broker URI</key>
+            <value>
+              <name>Broker URI</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Client ID</key>
+            <value>
+              <name>Client ID</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Username</key>
+            <value>
+              <name>Username</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Password</key>
+            <value>
+              <name>Password</name>
+            </value>
+          </entry>
+          <entry>
+            <key>SSL Context Service</key>
+            <value>
+              <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+              <name>SSL Context Service</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will Topic</key>
+            <value>
+              <name>Last Will Topic</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will Message</key>
+            <value>
+              <name>Last Will Message</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will Retain</key>
+            <value>
+              <name>Last Will Retain</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will QoS Level</key>
+            <value>
+              <name>Last Will QoS Level</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Session state</key>
+            <value>
+              <name>Session state</name>
+            </value>
+          </entry>
+          <entry>
+            <key>MQTT Specification Version</key>
+            <value>
+              <name>MQTT Specification Version</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Connection Timeout (seconds)</key>
+            <value>
+              <name>Connection Timeout (seconds)</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Keep Alive Interval (seconds)</key>
+            <value>
+              <name>Keep Alive Interval (seconds)</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Topic</key>
+            <value>
+              <name>Topic</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Quality of Service(QoS)</key>
+            <value>
+              <name>Quality of Service(QoS)</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Retain Message</key>
+            <value>
+              <name>Retain Message</name>
+            </value>
+          </entry>
+        </descriptors>
+        <executionNode>ALL</executionNode>
+        <lossTolerant>false</lossTolerant>
+        <penaltyDuration>30 sec</penaltyDuration>
+        <properties>
+          <entry>
+            <key>Broker URI</key>
+            <value>tcp://tb:1883</value>
+          </entry>
+          <entry>
+            <key>Client ID</key>
+            <value>nifi</value>
+          </entry>
+          <entry>
+            <key>Username</key>
+            <value>bb74CCJMdpDvm0DlR0Jy</value>
+          </entry>
+          <entry>
+            <key>Password</key>
+            <value> </value>
+          </entry>
+          <entry>
+            <key>SSL Context Service</key>
+          </entry>
+          <entry>
+            <key>Last Will Topic</key>
+          </entry>
+          <entry>
+            <key>Last Will Message</key>
+          </entry>
+          <entry>
+            <key>Last Will Retain</key>
+          </entry>
+          <entry>
+            <key>Last Will QoS Level</key>
+          </entry>
+          <entry>
+            <key>Session state</key>
+            <value>true</value>
+          </entry>
+          <entry>
+            <key>MQTT Specification Version</key>
+            <value>0</value>
+          </entry>
+          <entry>
+            <key>Connection Timeout (seconds)</key>
+            <value>30</value>
+          </entry>
+          <entry>
+            <key>Keep Alive Interval (seconds)</key>
+            <value>60</value>
+          </entry>
+          <entry>
+            <key>Topic</key>
+            <value>v1/devices/me/attributes</value>
+          </entry>
+          <entry>
+            <key>Quality of Service(QoS)</key>
+            <value>0</value>
+          </entry>
+          <entry>
+            <key>Retain Message</key>
+            <value>false</value>
+          </entry>
+        </properties>
+        <runDurationMillis>0</runDurationMillis>
+        <schedulingPeriod>0 sec</schedulingPeriod>
+        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+        <yieldDuration>1 sec</yieldDuration>
+      </config>
+      <name>PublishMQTT</name>
+      <relationships>
+        <autoTerminate>true</autoTerminate>
+        <name>failure</name>
+      </relationships>
+      <relationships>
+        <autoTerminate>true</autoTerminate>
+        <name>success</name>
+      </relationships>
+      <style></style>
+      <type>org.apache.nifi.processors.mqtt.PublishMQTT</type>
+    </processors>
+    <processors>
+      <id>0c9f40e0-9964-3557-0000-000000000000</id>
+      <parentGroupId>e0254ddb-a7a3-3279-0000-000000000000</parentGroupId>
+      <position>
+        <x>443.0</x>
+        <y>0.0</y>
+      </position>
+      <bundle>
+        <artifact>nifi-standard-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.3.0</version>
+      </bundle>
+      <config>
+        <bulletinLevel>WARN</bulletinLevel>
+        <comments></comments>
+        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+        <descriptors>
+          <entry>
+            <key>File Size</key>
+            <value>
+              <name>File Size</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Batch Size</key>
+            <value>
+              <name>Batch Size</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Data Format</key>
+            <value>
+              <name>Data Format</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Unique FlowFiles</key>
+            <value>
+              <name>Unique FlowFiles</name>
+            </value>
+          </entry>
+          <entry>
+            <key>generate-ff-custom-text</key>
+            <value>
+              <name>generate-ff-custom-text</name>
+            </value>
+          </entry>
+        </descriptors>
+        <executionNode>ALL</executionNode>
+        <lossTolerant>false</lossTolerant>
+        <penaltyDuration>30 sec</penaltyDuration>
+        <properties>
+          <entry>
+            <key>File Size</key>
+            <value>0B</value>
+          </entry>
+          <entry>
+            <key>Batch Size</key>
+            <value>1</value>
+          </entry>
+          <entry>
+            <key>Data Format</key>
+            <value>Text</value>
+          </entry>
+          <entry>
+            <key>Unique FlowFiles</key>
+            <value>false</value>
+          </entry>
+          <entry>
+            <key>generate-ff-custom-text</key>
+            <value>{"deviceType":"WeatherStation", "geoZone":"Zone A"}</value>
+          </entry>
+        </properties>
+        <runDurationMillis>0</runDurationMillis>
+        <schedulingPeriod>500 sec</schedulingPeriod>
+        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+        <yieldDuration>1 sec</yieldDuration>
+      </config>
+      <name>GenerateFlowFile</name>
+      <relationships>
+        <autoTerminate>false</autoTerminate>
+        <name>success</name>
+      </relationships>
+      <style></style>
+      <type>org.apache.nifi.processors.standard.GenerateFlowFile</type>
+    </processors>
+    <processors>
+      <id>101d5c05-b84f-3df4-0000-000000000000</id>
+      <parentGroupId>e0254ddb-a7a3-3279-0000-000000000000</parentGroupId>
+      <position>
+        <x>0.0</x>
+        <y>280.0</y>
+      </position>
+      <bundle>
+        <artifact>nifi-mqtt-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.3.0</version>
+      </bundle>
+      <config>
+        <bulletinLevel>WARN</bulletinLevel>
+        <comments></comments>
+        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+        <descriptors>
+          <entry>
+            <key>Broker URI</key>
+            <value>
+              <name>Broker URI</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Client ID</key>
+            <value>
+              <name>Client ID</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Username</key>
+            <value>
+              <name>Username</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Password</key>
+            <value>
+              <name>Password</name>
+            </value>
+          </entry>
+          <entry>
+            <key>SSL Context Service</key>
+            <value>
+              <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+              <name>SSL Context Service</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will Topic</key>
+            <value>
+              <name>Last Will Topic</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will Message</key>
+            <value>
+              <name>Last Will Message</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will Retain</key>
+            <value>
+              <name>Last Will Retain</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Last Will QoS Level</key>
+            <value>
+              <name>Last Will QoS Level</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Session state</key>
+            <value>
+              <name>Session state</name>
+            </value>
+          </entry>
+          <entry>
+            <key>MQTT Specification Version</key>
+            <value>
+              <name>MQTT Specification Version</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Connection Timeout (seconds)</key>
+            <value>
+              <name>Connection Timeout (seconds)</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Keep Alive Interval (seconds)</key>
+            <value>
+              <name>Keep Alive Interval (seconds)</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Topic</key>
+            <value>
+              <name>Topic</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Quality of Service(QoS)</key>
+            <value>
+              <name>Quality of Service(QoS)</name>
+            </value>
+          </entry>
+          <entry>
+            <key>Retain Message</key>
+            <value>
+              <name>Retain Message</name>
+            </value>
+          </entry>
+        </descriptors>
+        <executionNode>ALL</executionNode>
+        <lossTolerant>false</lossTolerant>
+        <penaltyDuration>30 sec</penaltyDuration>
+        <properties>
+          <entry>
+            <key>Broker URI</key>
+            <value>tcp://tb:1883</value>
+          </entry>
+          <entry>
+            <key>Client ID</key>
+            <value>nifi</value>
+          </entry>
+          <entry>
+            <key>Username</key>
+            <value>bb74CCJMdpDvm0DlR0Jy</value>
+          </entry>
+          <entry>
+            <key>Password</key>
+            <value> </value>
+          </entry>
+          <entry>
+            <key>SSL Context Service</key>
+          </entry>
+          <entry>
+            <key>Last Will Topic</key>
+          </entry>
+          <entry>
+            <key>Last Will Message</key>
+          </entry>
+          <entry>
+            <key>Last Will Retain</key>
+          </entry>
+          <entry>
+            <key>Last Will QoS Level</key>
+          </entry>
+          <entry>
+            <key>Session state</key>
+            <value>true</value>
+          </entry>
+          <entry>
+            <key>MQTT Specification Version</key>
+            <value>0</value>
+          </entry>
+          <entry>
+            <key>Connection Timeout (seconds)</key>
+            <value>30</value>
+          </entry>
+          <entry>
+            <key>Keep Alive Interval (seconds)</key>
+            <value>60</value>
+          </entry>
+          <entry>
+            <key>Topic</key>
+            <value>v1/devices/me/telemetry</value>
+          </entry>
+          <entry>
+            <key>Quality of Service(QoS)</key>
+            <value>0</value>
+          </entry>
+          <entry>
+            <key>Retain Message</key>
+            <value>false</value>
+          </entry>
+        </properties>
+        <runDurationMillis>0</runDurationMillis>
+        <schedulingPeriod>0 sec</schedulingPeriod>
+        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+        <yieldDuration>1 sec</yieldDuration>
+      </config>
+      <name>PublishMQTT</name>
+      <relationships>
+        <autoTerminate>true</autoTerminate>
+        <name>failure</name>
+      </relationships>
+      <relationships>
+        <autoTerminate>true</autoTerminate>
+        <name>success</name>
+      </relationships>
+      <style></style>
+      <type>org.apache.nifi.processors.mqtt.PublishMQTT</type>
+    </processors>
+    <processors>
+      <id>7e65a18e-fb94-38b5-0000-000000000000</id>
+      <parentGroupId>e0254ddb-a7a3-3279-0000-000000000000</parentGroupId>
+      <position>
+        <x>4.0</x>
+        <y>5.0</y>
+      </position>
+      <bundle>
+        <artifact>nifi-simulator-bundle-nar</artifact>
+        <group>com.hashmap</group>
+        <version>1.0-SNAPSHOT</version>
+      </bundle>
+      <config>
+        <bulletinLevel>WARN</bulletinLevel>
+        <comments></comments>
+        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+        <descriptors>
+          <entry>
+            <key>SIMULATOR_CONFIG</key>
+            <value>
+              <name>SIMULATOR_CONFIG</name>
+            </value>
+          </entry>
+          <entry>
+            <key>PRINT_HEADER</key>
+            <value>
+              <name>PRINT_HEADER</name>
+            </value>
+          </entry>
+          <entry>
+            <key>LONG_TIMESTAMP</key>
+            <value>
+              <name>LONG_TIMESTAMP</name>
+            </value>
+          </entry>
+          <entry>
+            <key>TIMEZONE</key>
+            <value>
+              <name>TIMEZONE</name>
+            </value>
+          </entry>
+          <entry>
+            <key>DATA_FORMAT</key>
+            <value>
+              <name>DATA_FORMAT</name>
+            </value>
+          </entry>
+        </descriptors>
+        <executionNode>ALL</executionNode>
+        <lossTolerant>false</lossTolerant>
+        <penaltyDuration>30 sec</penaltyDuration>
+        <properties>
+          <entry>
+            <key>SIMULATOR_CONFIG</key>
+            <value>/usr/local/configs/basicConfig.json</value>
+          </entry>
+          <entry>
+            <key>PRINT_HEADER</key>
+            <value>false</value>
+          </entry>
+          <entry>
+            <key>LONG_TIMESTAMP</key>
+            <value>true</value>
+          </entry>
+          <entry>
+            <key>TIMEZONE</key>
+            <value>America/Chicago</value>
+          </entry>
+          <entry>
+            <key>DATA_FORMAT</key>
+            <value>JSON</value>
+          </entry>
+        </properties>
+        <runDurationMillis>0</runDurationMillis>
+        <schedulingPeriod>1 sec</schedulingPeriod>
+        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+        <yieldDuration>1 sec</yieldDuration>
+      </config>
+      <name>GenerateTimeSeriesFlowFile</name>
+      <relationships>
+        <autoTerminate>false</autoTerminate>
+        <name>Success</name>
+      </relationships>
+      <style></style>
+      <type>com.hashmap.tempus.processors.GenerateTimeSeriesFlowFile</type>
+    </processors>
+  </snippet>
+  <timestamp>10/02/2017 21:25:57 UTC</timestamp>
+</template>
