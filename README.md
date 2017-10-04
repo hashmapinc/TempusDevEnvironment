@@ -62,7 +62,7 @@ Build the docker images (*Note: This WILL take a long time, as NiFi is almost 1 
 
 Once this is completed the system can be brought up
 
-    docker-compse up
+    docker-compose up
 
 At this point there will be a lot of information scrolling across the screen as the logs from each container will be comingled. The 
 container creation process will take between 1-2.5 minutes. Once up the following containers will have been created:
