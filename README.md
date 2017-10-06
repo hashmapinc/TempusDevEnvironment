@@ -126,6 +126,8 @@ the stop icon in the Operate panel.
 
 Right-click on Publish MQTT that is connected to the GenerateTimeSeriesFlowFile processor. Click on Configure. Click on the properties tab, and for User name enter the access token that was copied above. All of the other options should remain the same. (Note that in order to pass the validation of the processor properties, the password is simply a space character. It is not actually used).
 
+Note: The configurations for the simulator are stored in the location pointed to by the NIFI_CONFIGS_FILE variable in the .env file.
+
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/processor%20configuration.png" alt="Tempus"/>
 
 Click Apply to close the properties window. Do the same thing for the PublishMQTT process connected to the GenerateFlowFile processor.
