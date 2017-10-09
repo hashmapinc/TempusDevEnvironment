@@ -73,11 +73,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   spark-master:
-    image: gettyimages/spark
+    build: "spark-livy/"
+    #image: gettyimages/spark
     command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
     hostname: spark-master
     environment:
       MASTER: spark://spark-master:7077
+      LIBPROCESS_IP: ${HOST_IP}
       SPARK_CONF_DIR: /conf
       SPARK_PUBLIC_DNS: 127.0.0.1
       SPARK_WORKER_WEBUI_PORT: 8181
@@ -91,14 +93,17 @@ services:
       - 7077
       - 6066
       - 8181
+      - 8998
     ports:
       - 4040:4040
       - 6066:6066
       - 7077:7077
       - 8181:8080
+      - 8998:8998
     links:
       - kafka
     volumes:
       - ./conf/master:/conf
       - ./data:/tmp/data
       - "${SPARK_JAR_DIR}:/usr/local/apps"
+      - "${SPARK_JAR_DIR}:/usr/livy-server-0.3.0/upload"
