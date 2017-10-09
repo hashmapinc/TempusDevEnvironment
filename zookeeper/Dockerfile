@@ -26,9 +26,10 @@ ENV ZK_HOME /opt/zookeeper-${ZOOKEEPER_VERSION}
 RUN sed  -i "s|/tmp/zookeeper|$ZK_HOME/data|g" $ZK_HOME/conf/zoo.cfg; mkdir $ZK_HOME/data
 
 ADD start-zk.sh /usr/bin/start-zk.sh 
+ADD zookeeper-ready.sh /usr/bin/zookeeper-ready.sh
+RUN chmod a+x /usr/bin/zookeeper-ready.sh
 EXPOSE 2181 2888 3888
 
-WORKDIR /opt/zookeeper-${ZOOKEEPER_VERSION}
 VOLUME ["/opt/zookeeper-${ZOOKEEPER_VERSION}/conf", "/opt/zookeeper-${ZOOKEEPER_VERSION}/data"]
-
+HEALTHCHECK CMD bash ./usr/bin/zookeeper-ready.sh 2181
 CMD /usr/sbin/sshd && bash /usr/bin/start-zk.sh
