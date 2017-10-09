@@ -33,6 +33,7 @@ This readme will take you through how to setup the development environment for d
 * Maven 3.1 or newer
 * Docker (with compose)
 * A machine with 8+ GB of RAM and preferably quad core
+* The hashmapinc/thingsboard repository cloned on your local machine
 
 ### Configuring Docker
 
@@ -56,13 +57,11 @@ The environment variables are stored in the .env file. Change the HOST_IP to the
 machine is hosting the containers). For all the rest of the directories, point them to a location on the machine that exists. These
 locations will persist data even when the docker containers are destroyed (i.e. persistant storage).
 
-Build the docker images (*Note: This WILL take a long time, as NiFi is almost 1 GB*)
+Next you will want to configure the Makefile so that the PROJECT_DIR variable is pointing to the location of the parent POM file in the cloned local thingsboard repository. 
 
-    docker-compose build
+Compile the thingsboard source and build the docker images (*Note: This WILL take a long time, as NiFi is almost 1 GB*)
 
-Once this is completed the system can be brought up
-
-    docker-compose up
+    make all
 
 At this point there will be a lot of information scrolling across the screen as the logs from each container will be comingled. The 
 container creation process will take between 1-2.5 minutes. Once up the following containers will have been created:
