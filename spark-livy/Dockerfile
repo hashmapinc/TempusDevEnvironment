@@ -15,10 +15,8 @@ RUN mkdir logs && mkdir upload
 
 RUN rm /usr/bin/python && ln -s /usr/bin/python3.4 /usr/bin/python
 
-RUN bin/livy-server start
+ADD runspark.sh ${LIVY_HOME}
 
-WORKDIR $SPARK_HOME
+RUN chmod a+x runspark.sh
 
-RUN pip install numpy
-
-CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
+CMD ${LIVY_HOME}/runspark.sh

@@ -76,12 +76,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   spark-master:
     build: "spark-livy/"
-    #image: gettyimages/spark
-    command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
     hostname: spark-master
     environment:
       MASTER: spark://spark-master:7077
-      LIBPROCESS_IP: ${HOST_IP}
       SPARK_CONF_DIR: /conf
       SPARK_PUBLIC_DNS: 127.0.0.1
       SPARK_WORKER_WEBUI_PORT: 8181
@@ -107,10 +104,7 @@ services:
     volumes:
       - ./conf/master:/conf
       - ./data:/tmp/data
-      - "${SPARK_JAR_DIR}:/usr/local/apps"
-<<<<<<< HEAD
       - "${SPARK_JAR_DIR}:/usr/livy-server-0.3.0/upload"
-=======
   hbase:
     image: anoopnair/hbase_alpine:1.1.2
     hostname: hbase    
@@ -126,4 +120,3 @@ services:
      - "60030:60030"
      - "8070:8070"
      - "8090:8090"
->>>>>>> master
