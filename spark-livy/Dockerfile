@@ -11,6 +11,7 @@ WORKDIR /usr
 RUN curl -OL http://archive.cloudera.com/beta/livy/$LIVY_FILE.zip
 RUN unzip $LIVY_FILE.zip
 WORKDIR $LIVY_HOME
+ADD livy.conf conf
 RUN mkdir logs && mkdir upload
 
 RUN rm /usr/bin/python && ln -s /usr/bin/python3.4 /usr/bin/python
