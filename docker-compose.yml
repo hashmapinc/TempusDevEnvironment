@@ -106,7 +106,7 @@ services:
       - ./data:/tmp/data
       - "${SPARK_JAR_DIR}:/usr/livy-server-0.3.0/upload"
   hbase:
-    image: anoopnair/hbase_alpine:1.1.2
+    build: "hbase/"
     hostname: hbase    
     depends_on:
       zk:
