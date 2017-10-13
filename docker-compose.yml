@@ -35,6 +35,14 @@ services:
     volumes:
       - "${HSQLDB_DATA_DIR}:/usr/share/thingsboard/data/sql"
     entrypoint: /run-application.sh
+  cassandra:
+    image: "cassandra:3.9"
+    hostname: cassandra
+    ports:
+      - "9042"
+      - "9160"
+    volumes:
+      - "${CASSANDRA_DATA_DIR}:/var/lib/cassandra"
   postgres:
     image: "postgres:9.6"
     ports:
