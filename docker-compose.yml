@@ -51,6 +51,16 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - "${POSTGRES_DATA_DIR}:/var/lib/postgresql/data"
+  tb-gateway:
+    build: "tb-gateway/"
+    depends_on:
+      - "tb"
+    environment:
+      - GATEWAY_ACCESS_TOKEN=${GATEWAY_ACCESS_TOKEN}
+      - GATEWAY_HOST=${GATEWAY_HOST}
+    ports:
+      - "9095:9095"
+    entrypoint: /run-application.sh
   zk:
     build: "zookeeper/"
     hostname: zk
