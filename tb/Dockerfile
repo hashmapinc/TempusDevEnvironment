@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM openjdk:8-jre
+FROM openjdk:8-jdk
 
 ADD run-application.sh /run-application.sh
 ADD thingsboard.deb /thingsboard.deb
