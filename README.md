@@ -18,6 +18,8 @@ The intention is to provide an IoT, Streaming Analytics, and Storage Platform on
     * Kafka
 - Visualization
     * Thingsboard
+- Security 
+    * LDAP (Optional)
 
 This readme will take you through how to setup the development environment for development, and run a sample end-to-end application.
 
@@ -71,6 +73,29 @@ container creation process will take between 1-2.5 minutes. Once up the followin
 - Kafka
 - Spark (http://localhost:8181)
 - Postgres (storage for data in development environments, not for production use)
+
+### Enabling LDAP Security
+
+The default installation with 'make all' doesn't use LDAP security. However, It can be changed to use LDAP server for authentication and thingsboard to authorize the user based on the authentication.
+
+To enable LDAP authentication change the value of flag 'LDAP_AUTHENTICATION_ENABLED' to value 'true' in 'tb.env' and run the command 'make all-ldap' instead of 'make all' for installation. 
+
+This will also bring up the docker containers with 'openldap' and a web inteface to access the LDAP server. 
+
+The openldap server can be accessed via a web interface in browser on url 'http://localhost:9080' admin credentials are - 
+
+Login DN: cn=admin,dc=example,dc=org 
+Password: admin
+
+When the enviroment is Up, The user which should be authenticated needs to be created in LDAP server. It can be done by importing a ldif file in following format on web interface at "http://localhost:9080".
+
+dn: uid=tenant@thingsboard.org,dc=example,dc=org
+objectclass: account
+objectclass: simpleSecurityObject
+objectclass: top
+uid: tenant@thingsboard.org
+userpassword: tenant
+
 
 ### Docker Compose Controls
 
