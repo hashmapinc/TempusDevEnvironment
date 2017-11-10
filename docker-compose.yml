@@ -34,6 +34,7 @@ services:
       - kafka
     volumes:
       - "${HSQLDB_DATA_DIR}:/usr/share/thingsboard/data/sql"
+      - "${SPARK_JAR_DIR}:/home"
     entrypoint: /run-application.sh
   cassandra:
     image: "cassandra:3.9"
