@@ -32,4 +32,4 @@ EXPOSE 2181 2888 3888
 
 VOLUME ["/opt/zookeeper-${ZOOKEEPER_VERSION}/conf", "/opt/zookeeper-${ZOOKEEPER_VERSION}/data"]
 HEALTHCHECK CMD bash ./usr/bin/zookeeper-ready.sh 2181
-CMD /usr/sbin/sshd && bash /usr/bin/start-zk.sh
+CMD ./usr/bin/start-zk.sh
