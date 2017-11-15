@@ -15,4 +15,5 @@ ADD flow.xml.gz ${NIFI_HOME}/conf
 RUN chown -R nifi:nifi $NIFI_HOME
 USER nifi
 # Startup NiFi
-CMD $NIFI_HOME/bin/nifi.sh run
+ENTRYPOINT ["bin/nifi.sh"]
+CMD ["run"]
