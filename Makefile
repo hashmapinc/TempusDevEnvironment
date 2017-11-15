@@ -1,4 +1,4 @@
-PROJECT_DIR := /Users/jetinder/timeseries/thingsboard
+PROJECT_DIR := /Users/chris/Code/hashmap/thingsboard
 CURRENT_DIR := $(shell pwd)
 
 all:install copy build	
