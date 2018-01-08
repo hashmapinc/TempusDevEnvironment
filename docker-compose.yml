@@ -19,11 +19,6 @@ version: '2.1'
 services:
   tb:
     build: "tb/"
-    ports:
-      - "8080:8080"
-      - "1883:1883"
-      - "5683:5683/udp"
-      - "9999:9999"
     env_file:
       - tb.env
     environment:
@@ -36,6 +31,15 @@ services:
       - "${HSQLDB_DATA_DIR}:/usr/share/thingsboard/data/sql"
       - "${SPARK_JAR_DIR}:/home"
     entrypoint: /run-application.sh
+  nginx:
+    build: "nginx/"
+    ports:
+      - "443:443"           #http/https :8080
+      - "1884:1884"         #mqtt :1883
+      - "5684:5684/udp"     #coap :5683
+      - "9998:9998"         #port :9999
+    depends_on:
+      - "tb"
   cassandra:
     image: "cassandra:3.9"
     hostname: cassandra
