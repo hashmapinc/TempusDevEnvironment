@@ -74,6 +74,22 @@ container creation process will take between 1-2.5 minutes. Once up the followin
 - Spark (http://localhost:8181)
 - Postgres (storage for data in development environments, not for production use)
 
+### Configuring Nginx
+
+To run Thingsboard we have Nginx configured as SSL reverse proxy, which require ssl_cert and ssl_key to be generated for local setup using openssl.
+
+Move to the nginx directory :
+
+    cd nginx
+
+Generate the certificate and Key using following openssl command :
+
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert.key -out cert.crt
+
+Provide all the necessary paramters required while creating keys.
+
+For more help refer README file in nginx directory.
+
 ### Enabling LDAP Security
 
 The default installation with 'make all' doesn't use LDAP security. However, It can be changed to use LDAP server for authentication and thingsboard to authorize the user based on the authentication.
