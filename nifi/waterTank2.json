@@ -1,0 +1,26 @@
+{
+  "generators":[
+    {
+      "name": "weekly-basis",
+      "type": "weekly",
+      "points": {"monday": 10, "tuesday": 30, "wednesday": 50, "friday": 70, "saturday": 110, "sunday": 130}
+    },
+    {
+        "name": "noise",
+        "type": "arma",
+        "model": {
+          "std": 0.2,
+          "c": 0,
+          "seed": 1234
+        },
+        "timestep": 300000,
+        "origin": "2016-01-01 00:00:00.000"
+    }
+  ],
+  "exported":[
+    {"name": "waterTankLevel", "generator": "weekly-basis", "frequency": 1000},
+    {"name": "Attn", "generator": "noise", "frequency": 2000}
+  ],
+  "from": "2016-01-01 00:00:00.000",
+  "to": "2017-12-31 23:59:59.999"
+}
