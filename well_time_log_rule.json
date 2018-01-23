@@ -1,0 +1,28 @@
+{
+  "name": "Well time log Rule",
+  "state": "ACTIVE",
+  "weight": 0,
+  "pluginToken": "kafka-spark-streaming-sample",
+  "filters": [
+    {
+      "configuration": {
+        "messageTypes": [
+          "POST_TELEMETRY"
+        ]
+      },
+      "name": "MsgTypeFilter",
+      "clazz": "org.thingsboard.server.extensions.core.filter.MsgTypeFilter"
+    }
+  ],
+  "processor": null,
+  "action": {
+    "configuration": {
+      "sync": true,
+      "topic": "well-log-data",
+      "template": "#if($tags.size() > 0)\n\t[\n\t\t#foreach ($tag in $tags)\n\t\t  {\"id\": \"TIMELOG:$tag.key@$cs.nameWellbore@$cs.nameWell\", \"ts\": \"$tag.ts\", \"value\": $tag.valueAsString}\n\t\t  #if($velocityCount < $tagsVar.size())%!% #end\n\t\t#end\n\t]\n#end"
+    },
+    "clazz": "org.thingsboard.server.extensions.kafka.action.KafkaPluginAction",
+    "name": "WellTimeLog"
+  },
+  "additionalInfo": null
+}

@@ -28,6 +28,7 @@ This readme will take you through how to setup the development environment for d
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+- [KUDU](#kudu)
 
 ## Requirements
 
@@ -307,3 +308,37 @@ You are now visualizing the raw data and calculated data on one screen.
 
 
 
+
+## KUDU
+
+- Build Process (to be confirmed)
+	- If you checked out kudu branch, just run make build command instead of make all (if this does not work, make sure you checkout kudu branch of thingsboard as well and then run make all)
+
+- Configuration Check
+	- In NIFI, you should see Kudu process group that will have complete Kudu enabled flow
+	- In thingsboard, got to rules tab and do the following:
+		- If you don't see system telemetry rule for depth, use depth_system_telemetry_rule.json from TempusDevEnvionment folder to define one
+		- If you don't see time log rule for well, use well_time_log_rule.json from TempusDevEnvionment folder to define one
+		- If you don't see depth rule for well, use well_depth_log_rule.json from TempusDevEnvionment folder to define one
+
+- Verifying Program Execution
+	- When you start running NIFI processors, data will start getting posted to thingsboard and to Kafka so both thingsboard devices and kafka consumer terminal should be checked to see if data is visible
+	- Go to kafka container and change folder to /opt/kafka_2.12-0.11.0.2/bin and invoke the following command:
+		./kafka-console-consumer.sh --zookeeper zk:2181 --topic well-log-data
+	- To view thingsboard data, go to appropriate device cards and check attribute, telemetry and depth tabs.
+
+- Spark Code (this section is expected to change quite a lot but for now the following things have to be done)
+	- Use the source code zipped folder and build a fresh uber jar file
+	- Transfer the uber jar file to SPARK_JAR_DIR folder as specified in your .env file
+	- Create a subfolder in the SPARK_JAR_DIR called jars
+	- In the jars subfolder, copy the jars necessary for KUDU - ImpalaJDBC4.jar, libthrift-0.9.0.jar, and TCLIServiceClient.jar
+	- Identify spark container (LIVY) and go inside the container
+	- Change folder to upload (cd upload)
+	- Invoke the following command:
+		spark-submit --master local[*] --jars jars/ImpalaJDBC4.jar,jars/libthrift-0.9.0.jar,jars/TCLIServiceClient.jar --class com.hashmap.tempus.ToKudu uber-ratechange-0.0.1-SNAPSHOT.jar kafka:9092 well-log-data INFO
+	- Batches of data in the KUDU tables will start getting populated once every minute
+	- The above command defaults the KUDU connection parameters to jdbc:impala://192.168.56.101:21050/kudu_witsml, demo/demo
+	- The time_log table should be created with the following command:
+		CREATE TABLE time_log (nameWell STRING, nameWellbore STRING, nameLog STRING, mnemonic STRING, ts STRING, value DOUBLE, PRIMARY KEY (nameWell, nameWellbore, nameLog, mnemonic, ts)) STORED AS KUDU;
+	- The depth_log table should be created with the following command:
+		CREATE TABLE depth_log (nameWell STRING, nameWellbore STRING, nameLog STRING, mnemonic STRING, depthString STRING, depth DOUBLE, value DOUBLE, PRIMARY KEY (nameWell, nameWellbore, nameLog, mnemonic, depthString)) STORED AS KUDU;
