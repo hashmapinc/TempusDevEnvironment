@@ -3,9 +3,9 @@ PROJECT=tempus
 APP=application
 
 build:
-	#cp ../../application/target/thingsboard.deb .
+	#cp ../../application/target/tempus.deb .
 	docker build --pull -t ${PROJECT}/${APP}:${VERSION} -t ${PROJECT}/${APP}:latest .
-	rm thingsboard.deb
+	rm tempus.deb
 
 push: build
 	docker push ${PROJECT}/${APP}:${VERSION}
