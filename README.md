@@ -14,10 +14,10 @@ The intention is to provide an IoT, Streaming Analytics, and Storage Platform on
     * Spark
 - Ingest
     * NiFi
-    * Thingsboard
+    * Tempus
     * Kafka
 - Visualization
-    * Thingsboard
+    * Tempus
 - Security 
     * LDAP (Optional)
 
@@ -28,6 +28,7 @@ This readme will take you through how to setup the development environment for d
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+- [KUDU](#kudu)
 
 ## Requirements
 
@@ -35,7 +36,7 @@ This readme will take you through how to setup the development environment for d
 * Maven 3.1 or newer
 * Docker (with compose)
 * A machine with 8+ GB of RAM and preferably quad core
-* The hashmapinc/thingsboard repository cloned on your local machine
+* The hashmapinc/Tempus repository cloned on your local machine
 
 ### Configuring Docker
 
@@ -59,7 +60,7 @@ The environment variables are stored in the .env file. Change the HOST_IP to the
 machine is hosting the containers). For all the rest of the directories, point them to a location on the machine that exists. These
 locations will persist data even when the docker containers are destroyed (i.e. persistant storage).
 
-Next you will want to configure the Makefile so that the PROJECT_DIR variable is pointing to the location of the parent POM file in the cloned local thingsboard repository. 
+Next you will want to configure the Makefile so that the PROJECT_DIR variable is pointing to the location of the parent POM file in the cloned local Tempus repository. 
 
 Compile the thingsboard source and build the docker images (*Note: This WILL take a long time, as NiFi is almost 1 GB*)
 
@@ -68,7 +69,7 @@ Compile the thingsboard source and build the docker images (*Note: This WILL tak
 At this point there will be a lot of information scrolling across the screen as the logs from each container will be comingled. The 
 container creation process will take between 1-2.5 minutes. Once up the following containers will have been created:
 - NiFi (http://localhost:9090/nifi/)
-- Thingsboard (http://localhost:8080/)
+- Tempus (http://localhost:8080/)
 - Zookeeper
 - Kafka
 - Spark (http://localhost:8181)
@@ -118,11 +119,11 @@ At this point the environment is up and running. Now we will build a sample flow
 
 ## Usage
 
-### To update thingsboard
-Note: To update thingsboard, copy the thingsboard.deb file from the application/target directory of the thingsboard repo and place it in the /tb directory and build the container by running make build (this will be automated in a future release with hot code deploy)
+### To update Tempus
+Note: To update tempus, copy the tempus.deb file from the application/target directory of the tempus repo and place it in the /tb directory and build the container by running make build (this will be automated in a future release with hot code deploy)
 
-### Add a device in thingsboard
-Open the thingsboard UI by navigating to http://localhost:8080 using your browser. The default user name and password is as follows:
+### Add a device in Tempus
+Open the Tempus UI by navigating to http://localhost:8080 using your browser. The default user name and password is as follows:
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/login.png" alt="Tempus"/>
 
@@ -156,7 +157,7 @@ Click Apply to close the properties window. Do the same thing for the PublishMQT
 
 Start all the processors by clicking the play button in the Operate Panel.
 
-Go back to thingsboard and go to the devices again by clicking on Devices in the left hand menu and clicking on Test Device. Click on 
+Go back to tempus and go to the devices again by clicking on Devices in the left hand menu and clicking on Test Device. Click on 
 Latest Telemetry to ensure you are recieving data (it should be refreshing approximately once per second). This data is coming from the flow that contains the GenerateTimeSeriesFlowFile processor. 
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/Test%20Device%20Telemetry.png" alt="Tempus"/>
@@ -165,11 +166,11 @@ Click on Attributes and ensure that there are 2 attributes (deviceType and GeoZo
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/testdeviceatt.png" alt="Tempus"/>
 
-At this point we have now successfully started transmitting data to Thingsboard from NiFi via MQTT. 
+At this point we have now successfully started transmitting data to Tempus from NiFi via MQTT. 
 
 ### Setup the connection to Kafka
 
-The connection to Kafka is done via activating a plugin in thingsboard. Click on Plugins in the left-hand menu bar and click on the orange + in the lower right-hand corner to add a plugin. Click on the up arrow to import a plugin. In the /tb directory from where this repo was cloned, drag the file called kafka_plugin_for_spark_streaming_sample.json into the dashed box. Once it is done you should see the file name below the dashed box. Click Import. 
+The connection to Kafka is done via activating a plugin in tempus. Click on Plugins in the left-hand menu bar and click on the orange + in the lower right-hand corner to add a plugin. Click on the up arrow to import a plugin. In the /tb directory from where this repo was cloned, drag the file called kafka_plugin_for_spark_streaming_sample.json into the dashed box. Once it is done you should see the file name below the dashed box. Click Import. 
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/kafkapluginupload.png" alt="Tempus"/>
 
@@ -177,7 +178,7 @@ You should now see the Kafka Plugin for Spark Streaming Sample in a Suspended st
 
 ### Building and Provisioning an App
 
-At this point we will build a simple spark application that will read data from kafka and compute it and send it back to thingsboard. To do this we will need to perform the following steps.
+At this point we will build a simple spark application that will read data from kafka and compute it and send it back to tempus. To do this we will need to perform the following steps.
 
 Go to a directory where you can clone the Spark application and clone it with the following command:
 
@@ -193,9 +194,9 @@ Execute a Maven package goal with the following command
 
 Once done the uber jar should be located in spark-kafka-streaming-integration/target. Copy the original-spark-kafka-streaming-integration-1.0.0.jar file to the directory specified in the SPARK_JAR_DIR specified in the .env file above.
 
-At this point the jar is available to the spark container, but we will not yet start it. We will first start getting data flowing into kafka. The way to do this in thingsboard is to create a filter rule to route the data to the broker. 
+At this point the jar is available to the spark container, but we will not yet start it. We will first start getting data flowing into kafka. The way to do this in tempus is to create a filter rule to route the data to the broker. 
 
-Navigate to thingsboard again. Click on Rules from the left hand menu. Add a rule by clicking on the + icon in the bottom right hand corner and selecting the up arrow icon to import a rule. Drag the WindspeedTelemetryRule.json file from the TempusSparkApp repo root to the dashed box on the ui. Click Import. 
+Navigate to tempus again. Click on Rules from the left hand menu. Add a rule by clicking on the + icon in the bottom right hand corner and selecting the up arrow icon to import a rule. Drag the WindspeedTelemetryRule.json file from the TempusSparkApp repo root to the dashed box on the ui. Click Import. 
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/telemetry%20rule.png" alt="Tempus"/>
 
@@ -234,7 +235,7 @@ You should see data streaming on the console. You have now verified you are rece
 ##### Create the Spark Gateway
 Now that we know that we have data flowing into Kafka we can now process the data with Spark. Before we submit the application to spark, we have to create our gateway in thingsboard to receive the calculated data from Spark.
 
-Go back to the thingsboard UI and click Devices in the left-hand menu.
+Go back to the tempus UI and click Devices in the left-hand menu.
 
 Add a device with the orange + icon in the bottom right hand corner. Fill in the following information:
 Name: Spark Gateway
@@ -307,3 +308,37 @@ You are now visualizing the raw data and calculated data on one screen.
 
 
 
+
+## KUDU
+
+- Build Process (to be confirmed)
+	- If you checked out kudu branch, just run make build command instead of make all (if this does not work, make sure you checkout kudu branch of tempus as well and then run make all)
+
+- Configuration Check
+	- In NIFI, you should see Kudu process group that will have complete Kudu enabled flow
+	- In thingsboard, got to rules tab and do the following:
+		- If you don't see system telemetry rule for depth, use depth_system_telemetry_rule.json from TempusDevEnvionment folder to define one
+		- If you don't see time log rule for well, use well_time_log_rule.json from TempusDevEnvionment folder to define one
+		- If you don't see depth rule for well, use well_depth_log_rule.json from TempusDevEnvionment folder to define one
+
+- Verifying Program Execution
+	- When you start running NIFI processors, data will start getting posted to tempus and to Kafka so both tempus devices and kafka consumer terminal should be checked to see if data is visible
+	- Go to kafka container and change folder to /opt/kafka_2.12-0.11.0.2/bin and invoke the following command:
+		./kafka-console-consumer.sh --zookeeper zk:2181 --topic well-log-data
+	- To view tempus data, go to appropriate device cards and check attribute, telemetry and depth tabs.
+
+- Spark Code (this section is expected to change quite a lot but for now the following things have to be done)
+	- Use the source code zipped folder and build a fresh uber jar file
+	- Transfer the uber jar file to SPARK_JAR_DIR folder as specified in your .env file
+	- Create a subfolder in the SPARK_JAR_DIR called jars
+	- In the jars subfolder, copy the jars necessary for KUDU - ImpalaJDBC4.jar, libthrift-0.9.0.jar, and TCLIServiceClient.jar
+	- Identify spark container (LIVY) and go inside the container
+	- Change folder to upload (cd upload)
+	- Invoke the following command:
+		spark-submit --master local[*] --jars jars/ImpalaJDBC4.jar,jars/libthrift-0.9.0.jar,jars/TCLIServiceClient.jar --class com.hashmap.tempus.ToKudu uber-ratechange-0.0.1-SNAPSHOT.jar kafka:9092 well-log-data INFO
+	- Batches of data in the KUDU tables will start getting populated once every minute
+	- The above command defaults the KUDU connection parameters to jdbc:impala://192.168.56.101:21050/kudu_witsml, demo/demo
+	- The time_log table should be created with the following command:
+		CREATE TABLE time_log (nameWell STRING, nameWellbore STRING, nameLog STRING, mnemonic STRING, ts STRING, value DOUBLE, PRIMARY KEY (nameWell, nameWellbore, nameLog, mnemonic, ts)) STORED AS KUDU;
+	- The depth_log table should be created with the following command:
+		CREATE TABLE depth_log (nameWell STRING, nameWellbore STRING, nameLog STRING, mnemonic STRING, depthString STRING, depth DOUBLE, value DOUBLE, PRIMARY KEY (nameWell, nameWellbore, nameLog, mnemonic, depthString)) STORED AS KUDU;

@@ -1,6 +1,11 @@
 {
   "generators":[
     {
+      "name": "weekly-generator",
+      "type": "weekly",
+      "points": {"monday": 1, "tuesday": 10, "wednesday": 20, "friday": 40, "saturday": 50, "sunday": 70}
+    },
+    {
       "name": "monthly-basis",
       "type": "monthly",
       "points": {"january": 3.3, "february": 3.7, "march": 6.8, "april": 9.8, "may": 13.6, "june": 16.2,
@@ -26,6 +31,8 @@
     }
   ],
   "exported":[
+    {"name": "waterTankLevel", "generator": "weekly-generator", "frequency": 6000},
+    {"name": "logData", "generator": "weekly-generator", "frequency": 6000},
     {"name": "temperature", "generator": "generator1", "frequency": 6000},
     {"name": "pressure", "generator": "monthly-basis", "frequency": 3000},
     {"name": "torque", "generator": "generator2", "frequency": 6000},
@@ -40,6 +47,6 @@
     {"name": "windSpeed", "generator": "generator2", "frequency": 1000},
     {"name": "Attn", "generator": "generator1", "frequency": 2000}
   ],
-  "from": "2016-01-01 00:00:00.000",
-  "to": "2017-12-31 23:59:59.999"
+  "from": "2018-01-01 00:00:00.000",
+  "to": "2018-12-31 23:59:59.999"
 }

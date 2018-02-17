@@ -1,0 +1,29 @@
+{
+  "name": "DepthSystemTelemetryRule",
+  "state": "ACTIVE",
+  "weight": 0,
+  "pluginToken": "telemetry",
+  "filters": [
+    {
+      "configuration": {
+        "messageTypes": [
+          "POST_TELEMETRY_DEPTH"
+        ]
+      },
+      "clazz": "org.thingsboard.server.extensions.core.filter.MsgTypeFilter",
+      "name": "MessageTypeFilter"
+    }
+  ],
+  "processor": null,
+  "action": {
+    "configuration": {
+      "timeUnit": "DAYS",
+      "ttlValue": 365
+    },
+    "clazz": "org.thingsboard.server.extensions.core.action.telemetry.TelemetryPluginAction",
+    "name": "TelemetryPluginAction"
+  },
+  "additionalInfo": {
+    "description": "Depth System Telemetry Rule"
+  }
+}
