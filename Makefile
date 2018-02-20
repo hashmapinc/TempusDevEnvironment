@@ -1,4 +1,4 @@
-PROJECT_DIR := /Users/chris/Code/hashmap/thingsboard
+PROJECT_DIR := /Users/chris/Code/hashmap/Tempus/Tempus
 CURRENT_DIR := $(shell pwd)
 
 all:install copy build	
@@ -9,7 +9,7 @@ install:
 	mvn -f ${PROJECT_DIR}/pom.xml clean install -DskipTests
 
 copy:
-	cp ${PROJECT_DIR}/application/target/thingsboard.deb ${CURRENT_DIR}/tb
+	cp ${PROJECT_DIR}/application/target/tempus.deb ${CURRENT_DIR}/tb
 
 build:
 	docker-compose stop
