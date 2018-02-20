@@ -48,7 +48,7 @@ fi
 
 
 # Copying env variables into conf files
-printenv | awk -F "=" '{print "export " $1 "='\''" $2 "'\''"}' >> /usr/share/thingsboard/conf/tempus.conf
+printenv | awk -F "=" '{print "export " $1 "='\''" $2 "'\''"}' >> /usr/share/tempus/conf/tempus.conf
 
 cat /usr/share/tempus/conf/tempus.conf
 
