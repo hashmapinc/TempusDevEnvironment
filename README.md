@@ -126,8 +126,8 @@ Open the thingsboard UI by navigating to http://localhost:8080 using your browse
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/login.png" alt="Tempus"/>
 
-User: tenant@thingsboard.org
-Pass: tenant
+Tenant User/Pass: demo@hashmapinc.com/tenant
+System Admin User/Pass: sysadmin@hashmapinc.com/sysadmin
 
 Once logged in click on DEVICES in the left-hand menu. Add a device using the orange + symbol in the lower right hand. Fill in the following information:
 - Name: Test Device
