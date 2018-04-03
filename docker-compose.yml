@@ -32,9 +32,6 @@ services:
     links:
       - zk
       - kafka
-    volumes:
-      - "${HSQLDB_DATA_DIR}:/usr/share/tempus/data/sql"
-      - "${SPARK_JAR_DIR}:/home"
     entrypoint: /run-application.sh
   cassandra:
     image: "cassandra:3.9"
@@ -78,7 +75,7 @@ services:
     links:
       - "zk"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: ${HOST_IP}
+      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
       KAFKA_ZOOKEEPER_CONNECT: zk:2181
       KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 16000
     volumes:
