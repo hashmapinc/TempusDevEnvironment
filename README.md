@@ -68,11 +68,27 @@ Compile the thingsboard source and build the docker images (*Note: This WILL tak
 At this point there will be a lot of information scrolling across the screen as the logs from each container will be comingled. The 
 container creation process will take between 1-2.5 minutes. Once up the following containers will have been created:
 - NiFi (http://localhost:9090/nifi/)
-- Thingsboard (http://localhost:8080/)
+- Thingsboard (http://localhost:443)
 - Zookeeper
 - Kafka
 - Spark (http://localhost:8181)
 - Postgres (storage for data in development environments, not for production use)
+
+### Configuring Nginx
+
+To run Thingsboard we have Nginx configured as SSL reverse proxy, which require ssl_cert and ssl_key to be generated for local setup using openssl.
+
+Move to the nginx directory :
+
+    cd nginx
+
+Generate the certificate and Key using following openssl command :
+
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert.key -out cert.crt
+
+Provide all the necessary paramters required while creating keys.
+
+For more help refer README file in nginx directory.
 
 ### Enabling LDAP Security
 
@@ -122,7 +138,7 @@ At this point the environment is up and running. Now we will build a sample flow
 Note: To update thingsboard, copy the thingsboard.deb file from the application/target directory of the thingsboard repo and place it in the /tb directory and build the container by running make build (this will be automated in a future release with hot code deploy)
 
 ### Add a device in thingsboard
-Open the thingsboard UI by navigating to http://localhost:8080 using your browser. The default user name and password is as follows:
+Open the thingsboard UI by navigating to http://localhost:443 using your browser. The default user name and password is as follows:
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/login.png" alt="Tempus"/>
 
