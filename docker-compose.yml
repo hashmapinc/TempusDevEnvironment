@@ -33,7 +33,7 @@ services:
       - zk
       - kafka
     volumes:
-      - "${HSQLDB_DATA_DIR}:/usr/share/thingsboard/data/sql"
+      - "${HSQLDB_DATA_DIR}:/usr/share/tempus/data/sql"
     entrypoint: /run-application.sh
   cassandra:
     image: "cassandra:3.9"
@@ -43,40 +43,31 @@ services:
       - "9160"
     volumes:
       - "${CASSANDRA_DATA_DIR}:/var/lib/cassandra"
-  postgres:
-    image: "postgres:9.6"
-    ports:
-    - "5432"
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-    volumes:
-      - "${POSTGRES_DATA_DIR}:/var/lib/postgresql/data"
-  tb-gateway:
-    build: "tb-gateway/"
-    depends_on:
-      - "tb"
-    environment:
-      - GATEWAY_ACCESS_TOKEN=${GATEWAY_ACCESS_TOKEN}
-      - GATEWAY_HOST=${GATEWAY_HOST}
-    ports:
-      - "9095:9095"
-    entrypoint: /run-application.sh
+#  postgres:
+#    image: "postgres:9.6"
+#    ports:
+#    - "5432"
+#    environment:
+#      - POSTGRES_DB=${POSTGRES_DB}
+#    volumes:
+#      - "${POSTGRES_DATA_DIR}:/var/lib/postgresql/data"
+
   zk:
     build: "zookeeper/"
     hostname: zk
     ports:
       - "2181:2181"
-  nifi:
-    build: "nifi/"
-    ports:
-    - "9090:8080"
-    - "9191:9191"
-    volumes:
-      - "${NIFI_FLOWFILE_REPO_DIR}:/opt/nifi/nifi-1.3.0/flowfile_repository"
-      - "${NIFI_DATABASE_REPO_DIR}:/opt/nifi/nifi-1.3.0/database_repository"
-      - "${NIFI_CONTENT_REPO_DIR}:/opt/nifi/nifi-1.3.0/content_repository"
-      - "${NIFI_PROVENANCE_REPO_DIR}:/opt/nifi/nifi-1.3.0/provenance_repository"
-      - "${NIFI_LOG_DIR}:/opt/nifi/nifi-1.3.0/logs"
+#  nifi:
+#    build: "nifi/"
+#    ports:
+#    - "9090:8080"
+#    - "9191:9191"
+#    volumes:
+#      - "${NIFI_FLOWFILE_REPO_DIR}:/opt/nifi/nifi-1.3.0/flowfile_repository"
+#      - "${NIFI_DATABASE_REPO_DIR}:/opt/nifi/nifi-1.3.0/database_repository"
+#      - "${NIFI_CONTENT_REPO_DIR}:/opt/nifi/nifi-1.3.0/content_repository"
+#      - "${NIFI_PROVENANCE_REPO_DIR}:/opt/nifi/nifi-1.3.0/provenance_repository"
+#      - "${NIFI_LOG_DIR}:/opt/nifi/nifi-1.3.0/logs"
   kafka:
     build: "kafka/"
     ports:
@@ -87,54 +78,66 @@ services:
     links:
       - "zk"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: ${HOST_IP}
+      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
       KAFKA_ZOOKEEPER_CONNECT: zk:2181
       KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 16000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  spark-master:
-    build: "spark-livy/"
-    hostname: spark-master
-    environment:
-      MASTER: spark://spark-master:7077
-      SPARK_CONF_DIR: /conf
-      SPARK_PUBLIC_DNS: 127.0.0.1
-      SPARK_WORKER_WEBUI_PORT: 8181
-    expose:
-      - 7001
-      - 7002
-      - 7003
-      - 7004
-      - 7005
-      - 7006
-      - 7077
-      - 6066
-      - 8181
-      - 8998
-    ports:
-      - 4040:4040
-      - 6066:6066
-      - 7077:7077
-      - 8181:8080
-      - 8998:8998
-    links:
-      - kafka
-    volumes:
-      - ./conf/master:/conf
-      - ./data:/tmp/data
-      - "${SPARK_JAR_DIR}:/usr/livy-server-0.3.0/upload"
-  hbase:
-    build: "hbase/"
-    hostname: hbase    
-    depends_on:
-      zk:
-        condition: service_healthy
-    links:
-      - "zk"
-    ports:
-     - "60000:60000"
-     - "60010:60010"
-     - "60020:60020"
-     - "60030:60030"
-     - "8070:8070"
-     - "8090:8090"
+#  spark-master:
+#    build: "spark-livy/"
+#    hostname: spark-master
+#    environment:
+#      MASTER: spark://spark-master:7077
+#      SPARK_CONF_DIR: /conf
+#      SPARK_PUBLIC_DNS: 127.0.0.1
+#      SPARK_WORKER_WEBUI_PORT: 8181
+#    expose:
+#      - 7001
+#      - 7002
+#      - 7003
+#      - 7004
+#      - 7005
+#      - 7006
+#      - 7077
+#      - 6066
+#      - 8181
+#      - 8998
+#    ports:
+#      - 4040:4040
+#      - 6066:6066
+#      - 7077:7077
+#      - 8181:8080
+#      - 8998:8998
+#    links:
+#      - kafka
+#    volumes:
+#      - ./conf/master:/conf
+#      - ./data:/tmp/data
+#      - "${SPARK_JAR_DIR}:/usr/livy-server-0.3.0/upload"
+
+  tb-gateway:
+      build: "tb-gateway/"
+      links:
+        - tb
+      environment:
+        - GATEWAY_ACCESS_TOKEN=${GATEWAY_ACCESS_TOKEN}
+        - GATEWAY_HOST=${GATEWAY_HOST}
+      ports:
+        - "9095:9095"
+      entrypoint: /run-application.sh
+
+#  hbase:
+#    build: "hbase/"
+#    hostname: hbase
+#    depends_on:
+#      zk:
+#        condition: service_healthy
+#    links:
+#      - "zk"
+#    ports:
+#     - "60000:60000"
+#     - "60010:60010"
+#     - "60020:60020"
+#     - "60030:60030"
+#     - "8070:8070"
+#     - "8090:8090"
