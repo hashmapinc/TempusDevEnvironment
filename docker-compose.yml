@@ -117,8 +117,10 @@ services:
 
   tb-gateway:
       build: "tb-gateway/"
-      links:
+      depends_on:
         - tb
+      links:
+              - tb
       environment:
         - GATEWAY_ACCESS_TOKEN=${GATEWAY_ACCESS_TOKEN}
         - GATEWAY_HOST=${GATEWAY_HOST}
