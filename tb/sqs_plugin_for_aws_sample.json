@@ -1,0 +1,15 @@
+{
+  "additionalInfo": {
+    "description": "Plugin that is able to send messages to AWS Simple Queue Service"
+  },
+  "apiToken": "sqs-plugin",
+  "name": "SQS-Plugin",
+  "clazz": "com.hashmapinc.server.extensions.sqs.plugin.SqsPlugin",
+  "publicAccess": false,
+  "state": "ACTIVE",
+  "configuration": {
+    "accessKeyId": "<AWS_KEY_ID>",
+    "secretAccessKey": "<AWS_SECRECT_ACCESS_KEY>",
+    "region": "us-east-1"
+  }
+}

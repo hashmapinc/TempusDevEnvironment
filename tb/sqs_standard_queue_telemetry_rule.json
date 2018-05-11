@@ -1,0 +1,29 @@
+{
+  "additionalInfo": null,
+  "name": "SQS Standard Queue Telemetry Rule",
+  "state": "ACTIVE",
+  "weight": 0,
+  "pluginToken": "sqs-plugin",
+  "filters": [
+    {
+      "configuration": {
+        "messageTypes": [
+          "POST_TELEMETRY"
+        ]
+      },
+      "clazz": "com.hashmapinc.server.extensions.core.filter.MsgTypeFilter",
+      "name": "Post Telemetry Filter"
+    }
+  ],
+  "processor": null,
+  "action": {
+    "configuration": {
+      "sync": true,
+      "queue": "https://sqs.us-east-2.amazonaws.com/985277682766/testlambda",
+      "delaySeconds": 0,
+      "template": "#if ($tags.size()>0){#foreach ($tag in $tags)\n#if(!$tag.key.contains(\"Message\")) \n#set ($index = $tag.key.indexOf(\"@\"))\n#set ($index1 = $tag.key.indexOf(\"@\")+1)\n\"$tag.key.substring(0,$index)\":\"$tag.valueAsString\"#if($velocityCount < $tags.size()), #end#if($velocityCount == $tags.size()),\"LogName\":\"$tag.key.substring($index1)\", \"tempus.tsds\": \"$tag.ts\"#end#end#end}#end"
+    },
+    "name": "SQS Standard Queue Action",
+    "clazz": "com.hashmapinc.server.extensions.sqs.action.standard.SqsStandardQueuePluginAction"
+  }
+}
