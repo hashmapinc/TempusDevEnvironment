@@ -56,8 +56,9 @@ Once the clone is completed change directory into the **TempusDevEnvironment** d
 ### Configure the environment
 
 The environment variables are stored in the .env file. Change the HOST_IP to the IP address of the docker host (whatever
-machine is hosting the containers). For all the rest of the directories, point them to a location on the machine that exists. These
-locations will persist data even when the docker containers are destroyed (i.e. persistant storage).
+machine is hosting the containers). In the .env file, all the _DIR environment variables point to the location which will persist data for various docker containers, even when the docker containers are destroyed (i.e. persistent storage).
+
+You have to edit all the _DIR environment variables in the .env file to the location that exit on your machines. 
 
 Next you will want to configure the Makefile so that the PROJECT_DIR variable is pointing to the location of the parent POM file in the cloned local thingsboard repository. 
 
