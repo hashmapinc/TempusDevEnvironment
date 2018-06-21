@@ -29,9 +29,6 @@ services:
     environment:
       - ADD_SCHEMA_AND_SYSTEM_DATA=${ADD_SCHEMA_AND_SYSTEM_DATA}
       - ADD_DEMO_DATA=${ADD_DEMO_DATA}
-      - ACCESS_TOKEN_URI=http://identity-service:9002/uaa/oauth/token
-      - AUTHORIZATION_URI=http://identity-service:9002/uaa/oauth/authorize
-      - TOKEN_INFO_URI=http://identity-service:9002/uaa/oauth/check_token
     links:
       - postgres
       - zk
