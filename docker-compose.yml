@@ -30,7 +30,7 @@ services:
       - ADD_SCHEMA_AND_SYSTEM_DATA=${ADD_SCHEMA_AND_SYSTEM_DATA}
       - ADD_DEMO_DATA=${ADD_DEMO_DATA}
     links:
-      - postgres
+      - identity-service
       - zk
       - kafka
     entrypoint: /run-application.sh
