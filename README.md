@@ -68,19 +68,19 @@ All Tempus environment variables are stored in .env file.
 
 Create a directory say 'data' in your local machine and create a subdirectory structure as follows:
 
-- data
- -- cassandra
- -- hsqldb
- -- kafka
- -- ldap
- -- nifi
-    --- content
-    --- db
-    --- flowfile
-    --- logs
-    --- provenance
- -- postgres
- -- spark
+|--- data
+  |- cassandra
+  |- hsqldb
+  |- kafka
+  |- postgres
+  |- spark
+  |- ldap
+  |--- nifi
+    |- content
+    |- db
+    |- flowfile
+    |- logs
+    |- provenance
 
 These directories will hold the data from various Tempus processes. However, these processes will execute within docker containers, so we must point tell docker to point them to these physical directories. These locations will persist data even when the docker containers are destroyed (i.e. persistent storage).
 
