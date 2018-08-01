@@ -37,7 +37,6 @@ This readme will take you through how to setup the development environment for d
 * Docker (with compose)
 * A machine with 16 GB of RAM and preferably quad core
 * Preferred OS is MacOS or Linux
-* The hashmapinc/thingsboard repository cloned on your local machine
 
 ### Configuring Docker
 
@@ -69,19 +68,19 @@ All Tempus environment variables are stored in .env file.
 
 Create a directory say 'data' in your local machine and create a subdirectory structure as follows:
 
-> data
- >> cassandra
- >> hsqldb
- >> kafka
- >> ldap
- >> nifi
-    >>> content
-    >>> db
-    >>> flowfile
-    >>> logs
-    >>> provenance
- >> postgres
- >> spark
+- data
+ -- cassandra
+ -- hsqldb
+ -- kafka
+ -- ldap
+ -- nifi
+    --- content
+    --- db
+    --- flowfile
+    --- logs
+    --- provenance
+ -- postgres
+ -- spark
 
 These directories will hold the data from various Tempus processes. However, these processes will execute within docker containers, so we must point tell docker to point them to these physical directories. These locations will persist data even when the docker containers are destroyed (i.e. persistent storage).
 
@@ -92,11 +91,13 @@ NIFI_DATA_DIR=/home/ubuntu/data/nifi
 Next you will want to configure the Makefile so that the PROJECT_DIR variables are pointing to the location of the parent POM file in the cloned local Tempus & nifi-simulator-bundle repositories. For example
 
 PROJECT_DIR := /home/ubuntu/Tempus
+
 SIM_PROJECT_DIR := /home/ubuntu/nifi-simulator-bundle
 
 You also need to point following variables to HashmapAnalyticsFrameowrk directory on your machine. For example:
 
 API_DISCOVERY_DIR := /home/ubuntu/HashmapAnalyticsFramework/api-discovery
+
 IDENTITY_SERVICE_DIR := /home/ubuntu/HashmapAnalyticsFramework/identity-service
 
 Go to Tempus root directory, where pom.xml is present and run 'mvn validate'. After you see the 'BUILD SUCCESS' message return to
@@ -180,7 +181,6 @@ Once logged in click on DEVICES in the left-hand menu and select Tank 123.'Tank 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/Tank123.png" alt="Tempus"/>
 
  Under Details, click on Manage Credentials, and copy the access token.
-
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/CopyAccessToken.png" alt="Tempus"/>
 
