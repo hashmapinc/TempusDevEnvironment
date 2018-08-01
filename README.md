@@ -74,6 +74,10 @@ container creation process will take between 1-2.5 minutes. Once up the followin
 - Kafka
 - Spark (http://localhost:8181)
 - Postgres (storage for data in development environments, not for production use)
+- api_discovery
+- identity_service
+
+You can run 'docker ps' command to confirm this anytime.
 
 ### Enabling LDAP Security
 
