@@ -2,6 +2,7 @@ PROJECT_DIR := /Users/anuj/Projects/TempusCloud/Tempus
 SIM_PROJECT_DIR := /Users/anuj/Projects/TempusCloud/nifi-simulator-bundle
 API_DISCOVERY_DIR := /Users/anuj/Projects/TempusCloud/HashmapAnalyticsFramework/api-discovery
 IDENTITY_SERVICE_DIR := /Users/anuj/Projects/TempusCloud/HashmapAnalyticsFramework/identity-service
+METADATA_SERVICE_DIR := /Users/anuj/Projects/TempusCloud/HashmapAnalyticsFramework/metadata-api
 CURRENT_DIR := $(shell pwd)
 
 all:install copy build	
@@ -13,12 +14,14 @@ install:
 	mvn -f ${SIM_PROJECT_DIR}/pom.xml clean install -DskipTests
 	mvn -f ${API_DISCOVERY_DIR}/pom.xml clean install -DskipTests
 	mvn -f ${IDENTITY_SERVICE_DIR}/pom.xml clean install -DskipTests
+	mvn -f ${METADATA_SERVICE_DIR}/pom.xml clean install -DskipTests
 
 copy:
 	cp ${PROJECT_DIR}/application/target/tempus.deb ${CURRENT_DIR}/tb
 	cp ${SIM_PROJECT_DIR}/nifi-simulator-bundle-nar/target/nifi-simulator-bundle-nar-1.0-SNAPSHOT.nar ${CURRENT_DIR}/nifi
 	cp ${API_DISCOVERY_DIR}/target/api-discovery.jar ${CURRENT_DIR}/api-discovery
 	cp ${IDENTITY_SERVICE_DIR}/target/identity-service.jar ${CURRENT_DIR}/identity-service
+	cp ${METADATA_SERVICE_DIR}/target/metadata-api.jar ${CURRENT_DIR}/metadata-api
 
 build:
 	docker-compose stop
