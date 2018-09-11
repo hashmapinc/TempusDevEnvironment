@@ -54,7 +54,7 @@ In adiition, we also need following 3 github repositories to setup our dev envir
    
         git clone https://github.com/hashmapinc/HashmapAnalyticsFramework
         git clone https://github.com/hashmapinc/Tempus -b dev --clone dev branch
-        https://github.com/hashmapinc/nifi-simulator-bundle
+        git clone https://github.com/hashmapinc/nifi-simulator-bundle
 
 *Note: On a slow connection, this might take a while*
 
@@ -170,13 +170,13 @@ At this point the environment is up and running. Now we will build a sample flow
 
 ## Usage
 
-### Add a device in thingsboard
-Open the thingsboard UI by navigating to http://localhost:8080 using your browser. The default user name and password is as follows:
+### Add a device in Tempus
+Open Tempus UI by navigating to http://localhost:8080 using your browser. The default user name and password is as follows:
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/login.png" alt="Tempus"/>
 
-- Tenant User/Pass: demo@hashmapinc.com/tenant
-- (Note: System Admin User/Pass: sysadmin@hashmapinc.com/sysadmin)
+- Tenant Admin User/Pass: demo@hashmapinc.com/tenant
+- System Admin User/Pass: sysadmin@hashmapinc.com/sysadmin)
 
 Once logged in click on DEVICES in the left-hand menu and select Tank 123.'Tank 123' and 'Tank 456' test devices have already been created for demo purpose and you should use them.
 
@@ -200,7 +200,7 @@ Click Apply to close the properties window. Do the same thing for the PublishMQT
 
 Start all the processors by clicking the play button in the Operate Panel.
 
-Go back to thingsboard and go to the devices again by clicking on Devices in the left hand menu and clicking on Test Device. Click on
+Go back to Tempus UI and go to the devices again by clicking on Devices in the left hand menu and clicking on Test Device. Click on
 Latest Telemetry to ensure you are receiving data (it should be refreshing approximately once per second). This data is coming from the flow that contains the GenerateTimeSeriesFlowFile processor.
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/Test%20Device%20Telemetry.png" alt="Tempus"/>
@@ -209,7 +209,7 @@ Click on Attributes and ensure that there are 2 attributes (Attn and waterTankLe
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/TelemetryData.png" alt="Tempus"/>
 
-At this point we have now successfully started transmitting data to Thingsboard from NiFi via MQTT.
+At this point we have now successfully started transmitting data to Tempus from NiFi via MQTT.
 
 Repeat the same steps for device 'Tank 456'.
 
