@@ -58,14 +58,6 @@ In adiition, we also need following 3 github repositories to setup our dev envir
 
 *Note: On a slow connection, this might take a while*
 
-Once the clones are completed change directory into the **TempusDevEnvironment** directory
-
-        cd TempusDevEnvironment
-
-### Configure the environment
-
-All Tempus environment variables are stored in .env file.
-
 Create a directory say 'data' in your local machine and create following subdirectories under it: 
 
 - cassandra
@@ -85,6 +77,15 @@ Under nifi create following sub-directories:
 - provenance
 
 These directories will hold the data from various Tempus processes. However, these processes will execute within docker containers, so we must point tell docker to point them to these physical directories. These locations will persist data even when the docker containers are destroyed (i.e. persistent storage).
+
+Once the clones are completed change directory into the **TempusDevEnvironment** directory
+
+        cd TempusDevEnvironment
+
+### Configure the environment
+
+All Tempus environment variables are stored in .env file.
+
 
 Edit the .env file and point the environment variables to their respective directories using full path. For example:
 
@@ -175,8 +176,9 @@ Open Tempus UI by navigating to http://localhost:8080 using your browser. The de
 
 <img src="https://github.com/hashmapinc/hashmap.github.io/blob/master/devenv/login.png" alt="Tempus"/>
 
-- Tenant Admin User/Pass: demo@hashmapinc.com/tenant
 - System Admin User/Pass: sysadmin@hashmapinc.com/sysadmin)
+- Tenant Admin User/Pass: demo@hashmapinc.com/tenant
+- Tempus User User/Pass: bob.jones@hashmapinc.com/driller
 
 Once logged in click on DEVICES in the left-hand menu and select Tank 123.'Tank 123' and 'Tank 456' test devices have already been created for demo purpose and you should use them.
 
