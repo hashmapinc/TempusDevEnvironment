@@ -1,0 +1,25 @@
+{
+  "generators":[
+    {
+      "name": "weekly-basis",
+      "type": "weekly",
+      "points": {"monday": 1, "tuesday": 10, "wednesday": 20, "friday": 40, "saturday": 50, "sunday": 60}
+    },
+    {
+        "name": "noise",
+        "type": "arma",
+        "model": {
+          "std": 0.2,
+          "c": 0,
+          "seed": 1234
+        },
+        "timestep": 300000,
+        "origin": "2016-01-01 00:00:00.000"
+    }
+  ],
+  "exported":[
+    {"name": "currentRpm", "generator": "weekly-basis", "frequency": 1000}
+  ],
+  "from": "2016-01-01 00:00:00.000",
+  "to": "2017-12-31 23:59:59.999"
+}
