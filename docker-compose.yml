@@ -74,6 +74,14 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - "${POSTGRES_DATA_DIR}:/var/lib/postgresql/data"
+  data-quality:
+    build: "data-quality/"
+    ports:
+      - "9004:9004"
+    env_file:
+      - data-quality/data-quality.env
+    links:
+      - tb
   zk:
     build: "zookeeper/"
     hostname: zk
