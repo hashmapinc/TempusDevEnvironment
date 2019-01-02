@@ -3,7 +3,7 @@ SIM_PROJECT_DIR := /Users/anuj/Projects/TempusCloud/nifi-simulator-bundle
 API_DISCOVERY_DIR := /Users/anuj/Projects/TempusCloud/HashmapAnalyticsFramework/api-discovery
 IDENTITY_SERVICE_DIR := /Users/anuj/Projects/TempusCloud/HashmapAnalyticsFramework/identity-service
 METADATA_SERVICE_DIR := /Users/anuj/Projects/TempusCloud/HashmapAnalyticsFramework/metadata-api
-DATA_QUALITY_SERVICE_DIR := /Users/Pal/Repositories/HashmapAnalyticsFramework/data-quality-service
+DATA_QUALITY_SERVICE_DIR := /Users/anuj/Projects/TempusCloud/HashmapAnalyticsFramework/data-quality-service
 CURRENT_DIR := $(shell pwd)
 
 all:validate install copy build	
