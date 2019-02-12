@@ -143,4 +143,4 @@ services:
     volumes:
       - ./conf/master:/conf
       - ./data:/tmp/data
-      - "${SPARK_JAR_DIR}:/usr/livy-server-0.3.0/upload"
+      - "${SPARK_JAR_DIR}:/opt/livy/upload"
